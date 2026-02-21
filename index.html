@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosquito Swat</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MediaPipe Tasks Vision -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision/vision_bundle.js"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <h1 class="title">Mosquito Swat</h1>
+            <p class="subtitle">Swat the mosquitoes with your hand!</p>
+            <div class="menu-buttons">
+                <button id="btn-start" class="btn primary">Start Game</button>
+                <button id="btn-leaderboard" class="btn">Leaderboard</button>
+                <button id="btn-options" class="btn">Options</button>
+                <button id="btn-credits" class="btn">Credits</button>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div id="leaderboard-screen" class="screen">
+            <h2>Top 10 Swatters</h2>
+            <ul id="leaderboard-list"></ul>
+            <button id="btn-back-lb" class="btn">Back to Menu</button>
+        </div>
+
+        <!-- Options -->
+        <div id="options-screen" class="screen">
+            <h2>Options</h2>
+
+            <div class="options-container">
+                <div class="option-group">
+                    <h3>Visuals</h3>
+                    <div class="option-item">
+                        <label for="input-mosquito">Custom Mosquito (PNG):</label>
+                        <input type="file" id="input-mosquito" accept="image/png, image/jpeg">
+                        <small>Leave empty for default green circle.</small>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <h3>Audio (MP3/WAV)</h3>
+                    <div class="option-item">
+                        <label for="input-bgm">Background Music:</label>
+                        <input type="file" id="input-bgm" accept="audio/*">
+                    </div>
+                    <div class="option-item">
+                        <label for="input-swat-sound">Swat Sound Effect:</label>
+                        <input type="file" id="input-swat-sound" accept="audio/*">
+                    </div>
+                    <div class="option-item">
+                        <label for="input-click-sound">Menu Click Effect:</label>
+                        <input type="file" id="input-click-sound" accept="audio/*">
+                    </div>
+                </div>
+            </div>
+
+            <button id="btn-back-opt" class="btn">Back to Menu</button>
+        </div>
+
+        <!-- Credits -->
+        <div id="credits-screen" class="screen">
+            <h2>Credits</h2>
+            <p>Created by Antigravity</p>
+            <p>Powered by MediaPipe</p>
+            <button id="btn-back-cred" class="btn">Back to Menu</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-ui">
+                <div class="score-board">Score: <span id="score">0</span></div>
+                <div class="timer-board">Time: <span id="timer">60</span>s</div>
+                <button id="btn-quit" class="btn small">Quit</button>
+            </div>
+            <div class="camera-container">
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="output_canvas"></canvas>
+                <div id="mosquito" class="hidden"></div>
+                <!-- Hand Cursor visual feedback -->
+                <div id="hand-cursor" class="hidden"></div>
+            </div>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div id="game-over-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Game Over!</h2>
+                <p>Your Score: <span id="final-score">0</span></p>
+                <p>Username: <span id="final-username"></span></p>
+                <button id="btn-modal-ok" class="btn primary">Awesome!</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="game.js"></script>
+</body>
+
+</html>
