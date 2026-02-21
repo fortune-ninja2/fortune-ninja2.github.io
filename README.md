@@ -1,0 +1,1 @@
+# fortune-ninja2.github.io
